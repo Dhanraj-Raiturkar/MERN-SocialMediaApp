@@ -1,0 +1,22 @@
+.homeWrapper{
+    display: flex;
+}
+
+
+
+.postFeedWrapper{
+    flex: 7;
+    height: calc(100vh - 6.5vh);
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+.rightSidebarWrapper{
+    flex: 2.5;
+    height: calc(100vh - 6.5vh);
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
