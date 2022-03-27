@@ -1,0 +1,92 @@
+.header {
+    height: 5vh;
+    background-color: rgb(20, 80, 177);
+    display: flex;
+    position: sticky;
+    top: 0;
+}
+
+.navbarLeft {
+    flex: 3;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarCenter {
+    flex: 5;
+    display: flex;
+    align-items: center;
+    /* border: 3px solid red; */
+    /* background-color: yellow; */
+}
+.navbarRight {
+    flex: 3;
+    display: flex;
+    /* background-color: GREEN; */
+}
+
+.title{
+    text-align: center;
+    color: white;
+    /* border: 1px solid red; */
+    font-size: 2em;
+}
+
+.search{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    margin:0px;
+    padding: 0px;
+}
+
+.search input{
+    border: none;
+    width: 100%;
+    height: 69%;
+    border-radius: 22px;
+    padding: 0px 3vw;
+    font-size: 1.2em;
+    text-align: left;
+    margin: 0px 1vw;
+}
+
+.searchLogo{
+    color: black;
+    position: relative;
+    left: 3vw;
+}
+
+.links{
+    /* border: 1px solid yellow; */
+    display: flex;
+    margin:0px;
+}
+
+.links li {
+    list-style: none;
+    margin: 0px 1vw;
+    color: white;
+    font-family: 'Roboto';
+    font-size: 1.2em;
+    margin: 0px 1vw;
+}
+
+.iconContainer{
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.navbarIcons{
+    color: white;
+    font-size: 2em;
+    margin: 0px 5px;
+}
+
+.profileBadge{
+    border: 1px solid green;
+}
