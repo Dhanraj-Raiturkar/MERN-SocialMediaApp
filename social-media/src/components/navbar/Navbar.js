@@ -23,12 +23,12 @@ const Navbar = () => {
       </div>
       <div className={classes.navbarRight}>
           <div className={classes.iconContainer}>
-            <PersonIcon className={classes.navbarIcons} />
-            <MessageIcon className={classes.navbarIcons} />
-            <NotificationsIcon className={classes.navbarIcons} />
+            <PersonIcon fontSize='large' className={classes.navbarIcons} />
+            <MessageIcon fontSize='large' className={classes.navbarIcons} />
+            <NotificationsIcon fontSize='large' className={classes.navbarIcons} />
           </div>
           <div className={classes.profileBadge}>
-            <img></img>
+            <img src="./Assets/images/person2.jpg" alt="Profile pic" />
           </div>
       </div>
     </div>
