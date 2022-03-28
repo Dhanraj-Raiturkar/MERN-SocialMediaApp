@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MERN-SocialMediaApp/static/css/main.b8034b7a.css",
+    "main.js": "/MERN-SocialMediaApp/static/js/main.d223a933.js",
+    "index.html": "/MERN-SocialMediaApp/index.html",
+    "main.b8034b7a.css.map": "/MERN-SocialMediaApp/static/css/main.b8034b7a.css.map",
+    "main.d223a933.js.map": "/MERN-SocialMediaApp/static/js/main.d223a933.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b8034b7a.css",
+    "static/js/main.d223a933.js"
+  ]
+}
