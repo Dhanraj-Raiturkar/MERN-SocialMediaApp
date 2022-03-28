@@ -1,13 +1,14 @@
 .rightSidebarWrapper{
     flex: 2.5;
     /* height: calc(100vh - 6.5vh); */
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     padding: 1%;
 }
 
 .eventFeedContainer{
     width: 100%;
-    border: 1px solid rgb(167, 48, 167)
+    /* border: 1px solid rgb(167, 48, 167); */
+    margin: 2vh 0px;
 }
