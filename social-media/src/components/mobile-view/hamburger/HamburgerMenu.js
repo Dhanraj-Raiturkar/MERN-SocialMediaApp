@@ -36,6 +36,7 @@ const HamburgerMenu = () => {
             </div>
         </div>
         <Post />
+        <Post />
     </div>
   )
 }
