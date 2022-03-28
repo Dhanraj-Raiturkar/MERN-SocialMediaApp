@@ -5,10 +5,12 @@ import Post from './Post';
 
 const Feed = () => {
   return (
-    <div className={classes.feedContainer}>
+    <div className={classes.postFeedWrapper}>
+      <div className={classes.feedContainer}>
         <AddPost/>
         <Post />
         <Post />
+      </div>
     </div>
   )
 }

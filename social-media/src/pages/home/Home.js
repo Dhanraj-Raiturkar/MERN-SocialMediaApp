@@ -2,6 +2,7 @@ import Navbar from '../../components/navbar/Navbar';
 import classes from './Home.module.css';
 import LeftWindow from '../../components/leftFeedWindow/LeftWindow';
 import Feed from '../../components/feed/Feed';
+import RightWindow from '../../components/rightFeedWindow/RightWindow';
 
 const Home = () => {
   return (
@@ -9,12 +10,8 @@ const Home = () => {
         <Navbar/>
         <div className={classes.homeWrapper}>
             <LeftWindow />
-            <div className={classes.postFeedWrapper}>
-                <Feed />
-            </div>
-            <div className={classes.rightSidebarWrapper}>
-                Right window
-            </div>
+            <Feed />
+            <RightWindow />
         </div>
     </>
   )

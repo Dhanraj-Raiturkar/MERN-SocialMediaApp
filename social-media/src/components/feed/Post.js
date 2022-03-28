@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Post.module.css';
 import FeedCard from './FeedCard';
-import { collapseClasses } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 

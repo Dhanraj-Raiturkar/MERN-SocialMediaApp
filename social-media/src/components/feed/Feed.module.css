@@ -4,3 +4,10 @@
     height: 100%;
 }
 
+.postFeedWrapper{
+    flex: 6.5;
+    height: calc(100vh - 6.5vh);
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
