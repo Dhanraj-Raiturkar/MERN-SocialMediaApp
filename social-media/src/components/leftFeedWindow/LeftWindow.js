@@ -15,15 +15,15 @@ const LeftWindow = () => {
   return (
     <div className={classes.leftSidebarWrapper}>
         <ul className={classes.leftsidebarOptions}>
-            <li><RssFeedIcon sx={{fontSize:40}} /><span>Feed</span></li>
-            <li><ChatIcon sx={{fontSize:40}} /><span>Chat</span></li>
-            <li><VideoLibraryIcon sx={{fontSize:40}} /><span>Video</span></li>
-            <li><GroupsIcon sx={{fontSize:40}} /><span>Groups</span></li>
-            <li><WorkIcon sx={{fontSize:40}} /><span>Jobs</span></li>
-            <li><EventIcon sx={{fontSize:40}} /><span>Events</span></li>
-            <li><SchoolIcon sx={{fontSize:40}} /><span>Courses</span></li>
-            <li><BookmarkIcon sx={{fontSize:40}} /><span>Courses</span></li>
-            <li><HelpIcon sx={{fontSize:40}} /><span>Courses</span></li>
+            <li><RssFeedIcon sx={{fontSize:35}} /><span>Feed</span></li>
+            <li><ChatIcon sx={{fontSize:35}} /><span>Chat</span></li>
+            <li><VideoLibraryIcon sx={{fontSize:35}} /><span>Video</span></li>
+            <li><GroupsIcon sx={{fontSize:35}} /><span>Groups</span></li>
+            <li><WorkIcon sx={{fontSize:35}} /><span>Jobs</span></li>
+            <li><EventIcon sx={{fontSize:35}} /><span>Events</span></li>
+            <li><SchoolIcon sx={{fontSize:35}} /><span>Courses</span></li>
+            <li><BookmarkIcon sx={{fontSize:35}} /><span>Courses</span></li>
+            <li><HelpIcon sx={{fontSize:35}} /><span>Courses</span></li>
         </ul>
         {/* <input type="submit" value="Show More"/> */}
         <hr className={classes.leftSidebarHr}/>

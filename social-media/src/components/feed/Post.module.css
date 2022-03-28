@@ -1,0 +1,100 @@
+.postHeader {
+    height: 90vh;
+    /* border: 1px solid red; */
+    display: flex;
+    height: 10%;
+    align-items: center;
+}
+
+.postDetails {
+    /* border: 1px solid blue; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.postDetails img {
+    width: 7.5%;
+    height: 95%;
+    /* border: 1px solid red; */
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+.postTime {
+    color: rgb(102, 102, 102);
+}
+
+.postUsername {
+    margin: 0px 1vw;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.postOptions {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    /* border: 1px solid green; */
+    align-items: center;
+    justify-content: center;
+}
+
+.postOptions div{
+    /* background-color: black; */
+    height: 0.85vh;
+    width: 0.85vh;
+    margin: 0.2vh 0px;
+    border-radius: 50%;
+    background-color: rgb(53, 53, 53);
+}
+
+.postCaption {
+    /* border: 1px solid green; */
+    padding: 3vh 0px;
+    font-size: 1.2em;
+    overflow-wrap: break-word;
+}
+
+.post {
+    height: 80vh;
+    /* border: 1px solid black; */
+    /* margin-bottom: ; */
+}
+
+.post img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.postFooter {
+    /* height: 10vh; */
+    padding-top: 2vh;
+    /* border: 1px solid hotpink; */
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.likeSection {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* border: 1px solid yellow; */
+}
+
+.likeSection div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    margin-right: 0.8vw;
+}
+
+.commentSection span{
+    border-bottom: 2px dotted grey;
+}
