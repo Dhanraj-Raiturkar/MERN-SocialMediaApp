@@ -98,3 +98,16 @@
 .commentSection span{
     border-bottom: 2px dotted grey;
 }
+
+
+
+
+@media only screen and (min-width: 350px) and (max-width:450px) {
+
+    .likeSection div{
+        border: 1px solid yellow;
+        margin-right: 2vw;
+        height: 3.6vh;
+        width: 3.6vh;
+    }
+}

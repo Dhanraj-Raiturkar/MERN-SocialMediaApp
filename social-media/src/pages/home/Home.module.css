@@ -2,4 +2,12 @@
     display: flex;
 }
 
+.HamburgerMenu {
+    display: none;
+}
 
+@media only screen and (min-width: 350px) and (max-width:450px) {
+    .homeWrapper{
+        display: none;
+    }
+}

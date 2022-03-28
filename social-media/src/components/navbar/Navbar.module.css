@@ -27,6 +27,11 @@
     display: flex;
     justify-content: space-evenly;
     /* background-color: GREEN; */
+    /* border: 1px solid red; */
+}
+
+.hamburger{
+    display: none;
 }
 
 .title{
@@ -34,7 +39,7 @@
     text-align: center;
     color: white;
     /* border: 1px solid red; */
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .search{
@@ -104,4 +109,60 @@
     height: 100%;
     border-radius: 50%;
     object-fit: contain;
+}
+
+
+.notificationAlert {
+    width: 2.5vh;
+    height: 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: relative;
+    right: 1vw;
+    bottom: 1vh;
+}
+
+
+
+
+
+@media only screen and (min-width: 350px) and (max-width:450px) {
+    body{
+        background-color: rgb(206, 206, 206);
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .navbarLeft{
+        justify-content: center;
+    }
+    
+    .hamburger{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 60%;
+        width: 10%;
+    }
+
+    .hamburger div{
+        width: 90%;
+        height: 8%;
+        margin: 5% 0px;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .navbarCenter{
+        display: none;
+    }
+    .navbarRight{
+        display: none;
+    }
 }

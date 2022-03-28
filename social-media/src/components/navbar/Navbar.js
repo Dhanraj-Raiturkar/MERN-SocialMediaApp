@@ -23,9 +23,9 @@ const Navbar = () => {
       </div>
       <div className={classes.navbarRight}>
           <div className={classes.iconContainer}>
-            <PersonIcon fontSize='large' className={classes.navbarIcons} />
-            <MessageIcon fontSize='large' className={classes.navbarIcons} />
-            <NotificationsIcon fontSize='large' className={classes.navbarIcons} />
+            <PersonIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>1</span></span>
+            <MessageIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>7</span></span>
+            <NotificationsIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>2</span></span>
           </div>
           <div className={classes.profileBadge}>
             <img src="./Assets/images/person2.jpg" alt="Profile pic" />
