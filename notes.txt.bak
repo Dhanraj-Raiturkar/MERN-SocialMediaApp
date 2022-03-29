@@ -1,0 +1,39 @@
+userSchema:
+	username - unique
+	email - unique
+	password 
+	followers - array
+	following - array
+	isAdmin - boolean
+	desc - string
+	city - string
+	from - string
+	relationship - enum
+	timestamps
+	
+users apis:
+	update user
+	get user
+	delete user
+	follow a user
+		cant follow urself
+		add user to following list
+		add follow req sender to receivers followers list
+	unfollow a user
+
+
+
+
+postSchema:
+	userId
+	desc
+	img
+	likes
+
+post apis:
+	create post
+	delete post
+	update post
+	like post
+	get post
+	get all posts

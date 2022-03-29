@@ -1,9 +1,9 @@
 .container {
+    height: 100vh;
     background-color: rgb(245, 245, 245);
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.container div {
-    flex: 6;
-    border: 1px solid red;
-}
