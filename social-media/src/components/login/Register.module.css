@@ -69,6 +69,24 @@
     padding-left: 0px;
 }
 
+#unsubmit {
+    background-color: rgb(173, 173, 173);
+    color: rgb(112, 112, 112);
+    padding-left: 0px;
+    cursor: pointer;
+}
+
+.error {
+    background-color: rgb(223, 179, 179);
+    border: 1px solid rgb(224, 81, 81);
+}
+
+.errorMsg{
+    text-align: center;
+    color: rgb(224, 81, 81);
+}
+
+
 
 @media only screen and (min-width: 350px) and (max-width:450px) {
     .card {

@@ -3,19 +3,45 @@ const router = express.Router();
 const { hash, compare, genSalt } = require('bcrypt');
 const User = require('../database/models/user');
 
-//get a user
-router.get('/:id', async(req,res) => {
+//get all users
+router.get('/all', async(req,res) => {
     try{
-        const user = await User.findOne({_id:req.params.id});
+        const users = await User.find();
+        res.send(users);
+    }catch(error){
+        res.send(error.message);
+    }
+});
+
+//get a user by username
+router.get('/username/:username', async(req,res) => {
+    try{
+        const user = await User.findOne({username:req.params.username});
         if(user){
             res.send(user);
         }else{
-            res.send('no user found');
+            res.send(null);
         }
     }catch(error){
         console.log(error);
     }
 });
+
+//get a user by email
+router.get('/email/:email', async(req,res) => {
+    console.log('ran');
+    try{
+        const user = await User.findOne({email:req.params.email});
+        if(user){
+            res.send(user);
+        }else{
+            res.send(null);
+        }
+    }catch(error){
+        console.log(error);
+    }
+});
+
 
 //update user
 router.put('/:id', async(req,res) => {
