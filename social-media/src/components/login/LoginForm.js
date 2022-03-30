@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import classes from './LoginForm.module.css';
+import { toggleLogin } from '../../store/slices/uiSlices';
 
 const LoginForm = () => {
-
-  // const [loginForm, setLoginForm] = useState(true);
-
-  // const clickHandler = () => {
-  //   setLoginForm((prev) => !prev);
-  // }
-
-  // render(loginForm);
   
+  const dispatch = useDispatch();
+
+  const registerClickHandler = () => {
+    console.log('clicked');
+    dispatch(toggleLogin());
+  };
 
   return (
     <div className={classes.card}>
@@ -24,7 +24,7 @@ const LoginForm = () => {
         </form>
         <hr />
         <span style={{marginTop:'2vh', textAlign:'center'}}>Dont have an account?</span>
-        <button className={classes.registerButton}>Create new account</button>
+        <button className={classes.registerButton} onClick={registerClickHandler}>Create new account</button>
     </div>
   )
 }

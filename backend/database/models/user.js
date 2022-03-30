@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema(
         },
         gender: {
             type: String,
-            enum: ['Male', 'Female', 'Custom'],
+            required: true
         },
         followers: {
             type: Array,
@@ -41,7 +41,6 @@ const userSchema = mongoose.Schema(
         },
         relationship: {
             type: String,
-            enum: ['Single', 'Taken', 'Complicated'],
         },
     }, 
     { timeStamps: true }

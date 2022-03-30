@@ -56,5 +56,22 @@ export const checkEmailAvailability = (email) => {
     }
 }
 
+export const registerUser = (user) => {
+    return async(dispatch) => {
+        try{
+            const newUser = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-type":"application/json",
+                }
+            })
+            console.log(newUser);
+        }catch(error){
+            console.log=(error.message);
+        }
+    }
+}
+
 export const { usernameTaken, usernameAvailable, emailTaken, emailAvailable } = registerUserSlice.actions;
 export default registerUserSlice.reducer;

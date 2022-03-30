@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Register.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkUsernameAvailability, checkEmailAvailability } from '../../store/slices/registerUserSlice';
+import { checkUsernameAvailability, checkEmailAvailability, registerUser } from '../../store/slices/registerUserSlice';
+import { toggleLogin } from '../../store/slices/uiSlices';
 
 const Register = () => {
 
-    // const [toggleForm, setToggleForm] = useState(false);
+  
+    const loginClickHandler = () => {
+      dispatch(toggleLogin());
+    }
 
-    // const clickHandler = () => {
-    //     setToggleForm((prev) => !prev);
-    // }
-
-    // render(toggleForm);
     const [currentDate, setCurrentDate] = useState(new Date);
 
     const usernameState = useSelector(state => state.registerUser.usernameIsAvailable);
@@ -22,13 +21,16 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [dob, setDob] = useState(null);
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('Male');
     
     const usernameChangeHandler = (e) => {setUsername(e.target.value)};
     const emailChangeHandler = (e) => {setEmail(e.target.value)};
     const passwordChangeHandler = (e) => {setPassword(e.target.value)};
     const dobChangeHandler = (e) => {setDob(e.target.value)};
-    const genderChangeHandler = (e) => {setGender(e.target.value)};
+    const genderChangeHandler = (e) => {
+      console.log(e.target.value);
+      setGender(e.target.value)
+    };
     
     const [usernameTouched, setUsernameTouched] = useState(false);
     const [emailTouched, setEmailTouched] = useState(false);
@@ -54,16 +56,28 @@ const Register = () => {
 
     const formIsValid = !usernameInValid && usernameState && !emailInValid && emailState && passwordIsValid && passwordTouched && dobIsValid;
 
-    console.log(formIsValid);
+    const formSubmitHandler = (e) => {
+      e.preventDefault();
+      const newUser = { 
+        username,
+        email, 
+        password, 
+        birthday:dob, 
+        gender 
+      }
+      console.log(newUser);
+      dispatch(registerUser(newUser));
+    }
+
     return (
     <div className={classes.card}>
             <div className={classes.header}>
               <h1>Sign Up</h1>
               <span>Its quick and easy!</span>
             </div>
-            <form className={classes.registerForm}>
+            <form className={classes.registerForm} onSubmit={formSubmitHandler}>
               <input className={usernameInValid || !usernameState ? classes.error : ''} placeholder='Username' onChange={usernameChangeHandler} onBlur={usernameBlurHandler}/>
-              {usernameInValid && <span className={classes.errorMsg}>please enter a</span>}
+              {usernameInValid && <span className={classes.errorMsg}>please enter a username</span>}
               {!usernameState && <span className={classes.errorMsg}>this username is taken</span>}
               <input className={emailInValid || !emailState ? classes.error : ''} placeholder='Email' onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
               {emailInValid && <span className={classes.errorMsg}>please enter a valid email</span>}
@@ -73,15 +87,15 @@ const Register = () => {
               <input className={!dobIsValid ? classes.error : ''} type='date' onChange={dobChangeHandler} onBlur={dobBlurHandler}/>
               {!dobIsValid && <span className={classes.errorMsg}>age needs to be 10+</span>}
               <div className={classes.radioButtons}>
-                  <input defaultChecked type='radio' value='Male' name='gender' onChange={genderChangeHandler}/>
+                  <input defaultChecked type='radio' value='Male' name='gender' onClick={genderChangeHandler}/>
                   <label>Male</label>
-                  <input type='radio' value='Female' name='gender' onChange={genderChangeHandler}/>
+                  <input type='radio' value='Female' name='gender' onClick={genderChangeHandler}/>
                   <label>Female</label>
-                  <input type='radio' value='Custom' name='gender' onChange={genderChangeHandler}/>
+                  <input type='radio' value='Custom' name='gender' onClick={genderChangeHandler}/>
                   <label>Custom</label>
               </div>
               <input id={formIsValid ? classes.submit : classes.unsubmit} type='submit' value='Create account' />
-              <span style={{textAlign:'center', cursor:'pointer'}}>Already have an account? login.</span>
+              <span style={{textAlign:'center', cursor:'pointer', fontSize:'0.8em'}} onClick={loginClickHandler}>Already have an account? login.</span>
             </form>
         </div>
   )

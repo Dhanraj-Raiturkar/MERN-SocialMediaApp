@@ -29,7 +29,6 @@ router.get('/username/:username', async(req,res) => {
 
 //get a user by email
 router.get('/email/:email', async(req,res) => {
-    console.log('ran');
     try{
         const user = await User.findOne({email:req.params.email});
         if(user){
