@@ -25,7 +25,7 @@
     height: 4vh;
 }
 
-.leftsidebarOptions{
+/* .leftsidebarOptions{
     margin: 0px;
     padding: 0px;
 }
@@ -38,11 +38,9 @@
 }
 
 .leftsidebarOptions span{
-    /* position: relative;
-    bottom: 10px; */
     margin-left: 18px;
     font-size: 1.2em;
-}
+} */
 
 .leftSidebarWrapper input{
     background-color: rgb(206, 206, 206);
@@ -53,7 +51,7 @@
 }
 
 .leftSidebarHr {
-    margin: 2vh 0px;
+    margin: 1vh 0px;
 }
 
 .friendlist{

@@ -38,7 +38,6 @@ const Register = () => {
     const [dobTouched, setDobTouched] = useState(false);
     
     const usernameBlurHandler = () => {
-      console.log('blur');
       setUsernameTouched(true);
       dispatch(checkUsernameAvailability(username));
     };

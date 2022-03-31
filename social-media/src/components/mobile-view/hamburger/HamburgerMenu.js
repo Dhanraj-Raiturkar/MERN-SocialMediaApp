@@ -6,9 +6,20 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import FeedIcon from '@mui/icons-material/Feed';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import Post from '../../feed/Post';
+import MobileFeed from '../mobileFeed/MobileFeed';
+import { useState } from 'react';
+import LeftWindow from '../../leftFeedWindow/LeftWindow';
 
 const HamburgerMenu = () => {
+
+    const [leftFeedWindow, setLeftFeedWindow] = useState(false);
+
+    const leftFeedWindowClickHandler = () => {
+        console.log('ok');
+      setLeftFeedWindow(prev => {return !prev});
+    };
+
+    console.log(leftFeedWindow);
   return (
     <div className={classes.hamburgerMenu}> 
         <div className={classes.mobileNav}>
@@ -21,22 +32,15 @@ const HamburgerMenu = () => {
                 <NotificationsIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>2</span></span>
             </div>
             <div className={classes.menuLinks}>
-                <AccountBoxIcon fontSize='large'/>
+                <AccountBoxIcon fontSize='large' onClick={leftFeedWindowClickHandler}/>
             </div>
         </div>
-        <div className={classes.uploadPost}>
-            <div className={classes.menuLinks}>
-                <img src='Assets/images/person2.jpg' />
-            </div>
-            <div className={classes.iconContainer}>
-                <input placeholder='Whats in your mind?'/>
-            </div>
-            <div className={classes.menuLinks}>
-                <AddAPhotoIcon fontSize='large'/>
-            </div>
-        </div>
-        <Post />
-        <Post />
+        {!leftFeedWindow && <>
+            <MobileFeed/>
+        </>}
+        {
+            leftFeedWindow && <LeftWindow/>
+        }
     </div>
   )
 }

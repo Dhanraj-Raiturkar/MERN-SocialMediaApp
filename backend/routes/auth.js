@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { hash, compare, genSalt } = require('bcrypt');
 const User = require('../database/models/user');
+const { response } = require('express');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 //register user
 router.post('/register', async(req,res) => {
@@ -30,8 +35,12 @@ router.post('/login', async(req,res) => {
         if(user){
             const passwordValid = await compare(password, user.password);
             if(passwordValid){
-                res.send('Success!');
+                let userId = user._id;
+                const accessToken = jwt.sign({userId}, process.env.ACCESSTOKEN_SECRET);
+                res.json(accessToken);
+                console.log('Success!');
             }else{
+                res.sendStatus(400);
                 console.log('incorrect email or password');
             }
         }else{

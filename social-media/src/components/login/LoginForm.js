@@ -1,26 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classes from './LoginForm.module.css';
 import { toggleLogin } from '../../store/slices/uiSlices';
+import { loginUser } from '../../store/slices/loginUserSlice';
+import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
   
   const dispatch = useDispatch();
+  const loginStatus = useSelector(state => state.loginUser.loginStatus);
+  const navigate = useNavigate();
 
-  const registerClickHandler = () => {
-    console.log('clicked');
-    dispatch(toggleLogin());
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordTouched, setPasswordTouched] = useState(false);
+
+  const passwordIsValid = (password.length >= 3);
+
+  const registerClickHandler = () => {dispatch(toggleLogin());};
+
+  const emailChangeHandler = (e) => {setEmail(e.target.value);};
+  const passwordChangeHandler = (e) => {setPassword(e.target.value);setPasswordTouched(true)};
+  // const passwordBlurHandler = (e) => {setPasswordTouched(true)};
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({email,password}));
   };
+
+  useEffect(() => {
+    if(loginStatus){
+      navigate('/');
+    }
+  }, [loginStatus])
 
   return (
     <div className={classes.card}>
         <div className={classes.header}>
               <h1>Social Media</h1>
         </div>
-        <form className={classes.registerForm}>
-            <input placeholder='Email' />
-            <input placeholder='Password' />
-            <input id={classes.submit} type='submit' value='Login' />
+        <form className={classes.registerForm} onSubmit={submitHandler}>
+            <input placeholder='Email' type='email' onChange={emailChangeHandler}/>
+            <input className={!passwordIsValid && passwordTouched ? classes.error : ''} placeholder='Password' type="password" onChange={passwordChangeHandler}/>
+            <input 
+              id={passwordIsValid && passwordTouched && email.length > 3 
+                  ? classes.submit : classes.unsubmit} 
+              type='submit' value='Login' />
         </form>
         <hr />
         <span style={{marginTop:'2vh', textAlign:'center'}}>Dont have an account?</span>

@@ -2,15 +2,18 @@ const express = require('express');
 const router = express.Router();
 const { hash, compare, genSalt } = require('bcrypt');
 const User = require('../database/models/user');
+const authUser = require('../middleware/authUser');
+const { verify } = require('jsonwebtoken');
 
 //get all users
-router.get('/all', async(req,res) => {
+router.get('/all', authUser, async(req,res) => {
     try{
+        verify(req.token, process.env.ACCESSTOKEN_SECRET);
         const users = await User.find();
-        res.send(users);
+        res.send(users);  
     }catch(error){
-        res.send(error.message);
-    }
+        res.status(403).send(error.message);
+    };
 });
 
 //get a user by username

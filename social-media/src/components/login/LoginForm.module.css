@@ -41,6 +41,12 @@
     padding-left: 0px;
 }
 
+#unsubmit{
+    background-color: rgb(118, 137, 168);
+    color: rgb(219, 219, 219);
+    cursor: not-allowed;
+}
+
 .registerButton{
     margin: 2vh 0px;
     height: 6vh;
@@ -49,6 +55,16 @@
     background-color: rgb(0, 170, 37);
     border: none;
     color: white;
+}
+
+.error {
+    background-color: rgb(245, 224, 224);
+    border: 1px solid rgb(224, 81, 81);
+}
+
+.errorMsg{
+    text-align: center;
+    color: rgb(224, 81, 81);
 }
 
 
