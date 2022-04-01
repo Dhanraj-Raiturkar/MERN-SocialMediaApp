@@ -9,7 +9,7 @@ const Post = () => {
     <FeedCard>
         <div className={classes.postHeader}>
             <div className={classes.postDetails}>
-                <img alt='Profile pic' src='/Assets/images/person2.jpg' />
+                <img alt='Profile pic' src='/Assets/images/profilepic1.png' />
                 <span className={classes.postUsername}>Jane Doe</span>
                 <span className={classes.postTime}>5 mins ago</span>
             </div>

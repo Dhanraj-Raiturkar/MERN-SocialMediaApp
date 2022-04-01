@@ -4,8 +4,28 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleLogout } from '../../store/slices/uiSlices';
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const profilePageClickHandler = () => {
+    navigate('/profile');
+  };
+
+  const homePageClickHandler = () => {
+    navigate('/');
+  };
+
+  const toggleLogoutHandler = () => {
+    console.log('clicked');
+    dispatch(toggleLogout());
+  }
+
   return (
     <div className={classes.header}>
       <div className={classes.navbarLeft}>
@@ -17,8 +37,8 @@ const Navbar = () => {
           <input placeholder='search'></input>
         </form>
         <ul className={classes.links}>
-            <li>Homepage</li>
-            <li>Timeline</li>
+            <li onClick={homePageClickHandler}>Homepage</li>
+            <li onClick={profilePageClickHandler}>Timeline</li>
         </ul>
       </div>
       <div className={classes.navbarRight}>
@@ -28,7 +48,7 @@ const Navbar = () => {
             <NotificationsIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>2</span></span>
           </div>
           <div className={classes.profileBadge}>
-            <img src="./Assets/images/person2.jpg" alt="Profile pic" />
+            <img src="./Assets/images/profilepic1.png" alt="Profile pic" onClick={toggleLogoutHandler}/>
           </div>
       </div>
     </div>

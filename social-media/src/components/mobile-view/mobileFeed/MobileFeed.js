@@ -8,7 +8,7 @@ const MobileFeed = () => {
     <>
       <div className={classes.uploadPost}>
         <div className={classes.menuLinks}>
-          <img src="Assets/images/person2.jpg" />
+          <img src="Assets/images/profilepic1.png" />
         </div>
         <div className={classes.iconContainer}>
           <input placeholder="Whats in your mind?" />

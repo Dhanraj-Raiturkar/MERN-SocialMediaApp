@@ -1,0 +1,31 @@
+.friends {
+    display: flex;
+    flex-direction: column;
+}
+
+.sideProfiletitle {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 1vh;
+}
+
+.friendListFrame {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh
+}
+
+.friendDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+.friendDiv span {
+    text-align: center;
+}
+
+.friendDiv img {
+    height: 14vh;
+    width: 6vw;
+    border-radius: 7px;
+}

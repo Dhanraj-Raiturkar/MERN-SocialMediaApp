@@ -15,11 +15,12 @@ const MobileLogout = () => {
         dispatch(setUserState());
     }
 
-    useEffect(() => {
-      if (!loginStatus) {
-        navigate("/login");
-      }
-    }, [loginStatus]);
+    // useEffect(() => {
+    //   if (!loginStatus) {
+    //     localStorage.removeItem('LoginStatus');
+    //     navigate("/login");
+    //   }
+    // }, [loginStatus]);
 
     return (
         <button className={classes.mobileLogout} onClick={logoutHandler}>Logout</button>

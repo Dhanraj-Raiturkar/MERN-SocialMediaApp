@@ -1,0 +1,32 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    flex: 10;
+    /* border: 1px solid purple; */
+}
+
+.profileFeed {
+    display: flex;
+}
+
+.mainProfileFeed {
+    padding: 2%;
+    display: flex;
+    flex: 8;
+    width: 10vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sideProfileFeed {
+    padding: 2%;
+    display: flex;
+    flex: 4;
+    flex-direction: column;
+}
+
+
+
+
+

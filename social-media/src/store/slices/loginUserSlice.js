@@ -15,6 +15,7 @@ const loginUserSlice = createSlice(
     }
 );
 
+
 export const loginUser = (user) => {
     return async(dispatch) => {
         try{

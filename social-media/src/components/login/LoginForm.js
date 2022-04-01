@@ -9,6 +9,10 @@ const LoginForm = () => {
   
   const dispatch = useDispatch();
   const loginStatus = useSelector(state => state.loginUser.loginStatus);
+  console.log(loginStatus);
+  if(loginStatus){
+    localStorage.setItem('LoginStatus', true);
+  }
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -32,7 +36,7 @@ const LoginForm = () => {
     if(loginStatus){
       navigate('/');
     }
-  }, [loginStatus])
+  }, [loginStatus]);
 
   return (
     <div className={classes.card}>

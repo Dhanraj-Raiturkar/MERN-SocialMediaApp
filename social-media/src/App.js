@@ -4,14 +4,16 @@ import Login from "./pages/login/Login";
 import {BrowserRouter, Route, Router, Routes} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store/store';
+import ProfilePage from "./pages/profile/ProfilePage";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Home/>} />
+            <Route exact path='/' element={<Home/>} />
             <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/profile' element={<ProfilePage/>} />
         </Routes>
       </BrowserRouter>
     </Provider>

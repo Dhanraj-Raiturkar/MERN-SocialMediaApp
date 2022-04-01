@@ -1,0 +1,17 @@
+.sideProfileElement {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vh;
+}
+
+.sideProfiletitle {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 1vh;
+}
+
+.userInfo {
+    margin: 1vh 0px;
+    font-size: 1.1em;
+    color: rgb(78, 78, 78);
+}

@@ -1,7 +1,19 @@
 .addPost {
     /* border: 1px solid black; */
-    padding: 2%;
     /* height: 32%; */
+    padding: 2%;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.16);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.16);
+    margin-bottom: 3vh;
+    width: 97%;
+}
+
+.addPost1 {
+    /* border: 1px solid black; */
+    /* height: 32%; */
+    padding: 2%;
     border-radius: 20px;
     -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.16);
     -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.16);

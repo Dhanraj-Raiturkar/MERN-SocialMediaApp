@@ -15,8 +15,12 @@
 }
 
 .postDetails img {
-    width: 7.5%;
-    height: 95%;
+    /* width: 7.5%;
+    height: 95%; */
+    /* width: 75px;
+    height: 75px; */
+    width: 4.375rem;
+    height: 4.375rem;
     /* border: 1px solid red; */
     object-fit: fill;
     border-radius: 50%;
@@ -72,6 +76,7 @@
 .postFooter {
     /* height: 10vh; */
     padding-top: 2vh;
+    padding-bottom: 1vh;
     /* border: 1px solid hotpink; */
     display: flex;
     align-items: baseline;
