@@ -22,7 +22,7 @@
     margin: 0px 2%;
     height: 25%;
     font-size: 1.75em;
-    color: rgb(255, 255, 255);
+    outline: none;
 }
 
 .addPostDivider{

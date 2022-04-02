@@ -1,16 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+try{
+    var loginStatus = JSON.parse(localStorage.getItem('userState')).loginStatus;
+    var loginFailed = JSON.parse(localStorage.getItem('userState')).loginFailed;
+    var userInfo = JSON.parse(localStorage.getItem('userInfo')).userInfo;
+}catch(error){
+    var loginStatus = false;
+    var loginFailed = false;
+    var userInfo = null;
+}
+
 const loginUserSlice = createSlice(
     {
         name:'loginUserSlice',
         initialState: {
-            loginStatus:false,
+            loginStatus: loginStatus,
+            loginFailed: loginFailed,
+            userInfo: userInfo,
         },
         reducers: {
-            setUserState: (state) => {
-                console.log('ok');
+            setUserState: (state, action) => {
                 state.loginStatus = !state.loginStatus;
+                if(action.payload){
+                    state.userInfo = action.payload;
+                    localStorage.setItem('userInfo', JSON.stringify(action.payload));
+                }
             },
+            setLoginFailed: (state, action) => {
+                state.loginFailed = action.payload;
+            }
         }
     }
 );
@@ -30,7 +48,11 @@ export const loginUser = (user) => {
                 console.log('success');
                 const userToken = await response.json();
                 localStorage.setItem('accesstoken', userToken);
-                dispatch(setUserState());
+                // dispatch(setUserState());
+                dispatch(setUserInfoState(userToken));
+                dispatch(setLoginFailed(false));
+            }else{
+                dispatch(setLoginFailed(true));
             }
         }catch(error){
             // console.log(error.message);
@@ -38,5 +60,22 @@ export const loginUser = (user) => {
     }
 }
 
-export const { setUserState } = loginUserSlice.actions;
+export const setUserInfoState = (accessToken) => {
+    return async(dispatch) => {
+        try{
+            const response = await fetch('http://localhost:5000/api/users/getUserData', {
+                method: 'POST',
+                headers: {
+                    'authorization': `Bearer ${accessToken}` 
+                }
+            });
+            const userInfo = await response.json();
+            dispatch(setUserState(userInfo));
+        }catch(error){
+            console.log(error);    
+        }
+    }
+}
+
+export const { setUserState, setLoginFailed } = loginUserSlice.actions;
 export default loginUserSlice.reducer;

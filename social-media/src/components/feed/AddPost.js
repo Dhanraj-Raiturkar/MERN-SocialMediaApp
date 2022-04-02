@@ -6,12 +6,16 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import classes from './AddPost.module.css';
 import FeedCard from './FeedCard';
 
+const PostChangeHandler = () => {
+
+}
+
 const AddPost = () => {
   return (
     <FeedCard>
       <form className={classes.addPostForm}>
         <img alt="Profile pic" src="./Assets/images/person2.jpg" />
-        <input type="text" placeholder="Whats in your mind Jane?" />
+        <input type="text" placeholder="Whats in your mind Jane?" onChange={PostChangeHandler}/>
       </form>
       <hr className={classes.addPostDivider}/>
       <div className={classes.addPostUploadOptions}>

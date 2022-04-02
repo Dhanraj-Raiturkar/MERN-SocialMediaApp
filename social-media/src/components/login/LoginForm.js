@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './LoginForm.module.css';
 import { toggleLogin } from '../../store/slices/uiSlices';
-import { loginUser } from '../../store/slices/loginUserSlice';
+import { loginUser, setUserInfoState } from '../../store/slices/loginUserSlice';
 import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
   
   const dispatch = useDispatch();
   const loginStatus = useSelector(state => state.loginUser.loginStatus);
+  const loginFailed = useSelector(state => state.loginUser.loginFailed); 
   console.log(loginStatus);
   if(loginStatus){
-    localStorage.setItem('LoginStatus', true);
+    localStorage.setItem('userStatus', JSON.stringify({loginStatus,loginFailed}));
   }
   const navigate = useNavigate();
 
@@ -50,6 +51,10 @@ const LoginForm = () => {
               id={passwordIsValid && passwordTouched && email.length > 3 
                   ? classes.submit : classes.unsubmit} 
               type='submit' value='Login' />
+            {loginFailed && <div className={classes.loginFailed}>
+                <span>Incorrect Username or Password</span>
+                <span>Login Failed</span>
+            </div>}
         </form>
         <hr />
         <span style={{marginTop:'2vh', textAlign:'center'}}>Dont have an account?</span>

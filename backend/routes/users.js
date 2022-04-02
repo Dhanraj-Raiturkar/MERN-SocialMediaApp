@@ -16,6 +16,21 @@ router.get('/all', authUser, async(req,res) => {
     };
 });
 
+//get user by access token
+router.post('/getUserData', async(req,res) => {
+    try{
+        const bearerToken = req.headers['authorization'];
+        const accessToken = bearerToken.split(' ')[1];
+        req.token = accessToken;
+        const response = verify(req.token, process.env.ACCESSTOKEN_SECRET);
+        const user = await User.findOne({_id:response.userId});
+        res.json(user);
+    }catch(error){
+        res.status(400);
+        console.log(error);
+    }
+});
+
 //get a user by username
 router.get('/username/:username', async(req,res) => {
     try{

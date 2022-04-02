@@ -48,7 +48,7 @@ const Navbar = () => {
             <NotificationsIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>2</span></span>
           </div>
           <div className={classes.profileBadge}>
-            <img src="./Assets/images/profilepic1.png" alt="Profile pic" onClick={toggleLogoutHandler}/>
+            <img src="./Assets/images/person2.jpg" alt="Profile pic" onClick={toggleLogoutHandler}/>
           </div>
       </div>
     </div>

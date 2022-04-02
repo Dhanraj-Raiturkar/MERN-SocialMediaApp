@@ -12,13 +12,14 @@ const MobileLogout = () => {
 
     const logoutHandler = () => {
         localStorage.removeItem('accesstoken');
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem('userStatus');
         dispatch(setUserState());
+        navigate("/login");
     }
 
     // useEffect(() => {
     //   if (!loginStatus) {
-    //     localStorage.removeItem('LoginStatus');
-    //     navigate("/login");
     //   }
     // }, [loginStatus]);
 
