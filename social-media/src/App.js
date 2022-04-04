@@ -2,21 +2,27 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import {BrowserRouter, Route, Router, Routes} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import store from './store/store';
 import ProfilePage from "./pages/profile/ProfilePage";
+import { useSelector } from "react-redux";
 
 function App() {
+
+  const loginStatus = useSelector(state => state.loginUser.loginStatus);
+
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-            <Route exact path='/' element={<Home/>} />
-            <Route exact path='/login' element={<Login/>} />
-            <Route exact path='/profile' element={<ProfilePage/>} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <Routes>
+          <Route exact path='/' element=
+            {
+              loginStatus ?
+                <Home/>
+              :
+                <Login/>
+            } />
+          <Route exact path='/login' element={<Login/>} />
+          <Route exact path='/profile' element={<ProfilePage/>} />
+      </Routes>
+    </BrowserRouter> 
   );
 }
 

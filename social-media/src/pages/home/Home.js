@@ -11,6 +11,7 @@ const Home = () => {
 
   const toggleLogout = useSelector(state => state.toggleUi.toggleLogout);
 
+  console.log(toggleLogout);
   return (
     <>
         <Navbar/>

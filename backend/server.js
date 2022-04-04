@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDb = require('./database/config');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
+const postRouter = require('./routes/post');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/post', postRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`server running on ${process.env.PORT}`);

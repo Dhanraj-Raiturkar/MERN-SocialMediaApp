@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     height: 48%;
+    flex-direction: column;
 }
 
 .addPostForm img{
@@ -27,6 +28,7 @@
 
 .addPostDivider{
     margin: 3vh;
+    width: 90%;
 }
 
 .addPostUploadOptions{
@@ -45,6 +47,7 @@
     font-size: 1.2em;
     font-weight: 600;
     margin-right: 1.5vw;
+    cursor: auto;
 }
 
 .shareButton{
@@ -57,4 +60,21 @@
     font-size: 1em;
     color: white;
     font-weight: 600;
+}
+
+.caption {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+}
+
+.media {
+    display: flex;
+    width: 100%;
+}
+
+.uploadMedia {
+    display: none;
 }

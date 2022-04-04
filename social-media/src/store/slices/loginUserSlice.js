@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+console.log('loginSlice');
+
 try{
     var loginStatus = JSON.parse(localStorage.getItem('userState')).loginStatus;
+    console.log("--> ",loginStatus);
     var loginFailed = JSON.parse(localStorage.getItem('userState')).loginFailed;
-    var userInfo = JSON.parse(localStorage.getItem('userInfo')).userInfo;
+    var userInfo = JSON.parse(localStorage.getItem('userInfo'));
 }catch(error){
     var loginStatus = false;
     var loginFailed = false;
     var userInfo = null;
 }
+
+console.log(loginStatus);
 
 const loginUserSlice = createSlice(
     {
@@ -28,6 +33,9 @@ const loginUserSlice = createSlice(
             },
             setLoginFailed: (state, action) => {
                 state.loginFailed = action.payload;
+            },
+            deleteUserInfo: (state) => {
+                state.userInfo = null;
             }
         }
     }
@@ -77,5 +85,5 @@ export const setUserInfoState = (accessToken) => {
     }
 }
 
-export const { setUserState, setLoginFailed } = loginUserSlice.actions;
+export const { setUserState, setLoginFailed, deleteUserInfo } = loginUserSlice.actions;
 export default loginUserSlice.reducer;

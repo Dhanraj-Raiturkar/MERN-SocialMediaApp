@@ -5,31 +5,31 @@ const FriendList = () => {
   return (
     <ul className={classes.friendlist}>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
             <li className={classes.friendListItem}>
-                <img src='./Assets/images/person2.jpg'/>
+                <img src='./Assets/images/profilepic1.png'/>
                 <span>Jane Doe</span>
             </li>
         </ul>

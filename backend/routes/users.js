@@ -4,6 +4,7 @@ const { hash, compare, genSalt } = require('bcrypt');
 const User = require('../database/models/user');
 const authUser = require('../middleware/authUser');
 const { verify } = require('jsonwebtoken');
+const upload = require('../middleware/addFile');
 
 //get all users
 router.get('/all', authUser, async(req,res) => {
@@ -102,6 +103,14 @@ router.delete('/:id', async(req,res) => {
     }catch(error){
         res.send(error);
     }
+});
+
+
+//update coverpic
+router.post('/coverpic/:id', upload.single('coverPicUpload'), async(req,res) => {
+    const user = await User.findOne({_id:req.params.id});
+    user.coverPic = req.file.originalname;
+    const response = await user.save();
 });
 
 module.exports = router;

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setUserState } from '../../store/slices/loginUserSlice';
+import { setUserState, deleteUserInfo } from '../../store/slices/loginUserSlice';
+import { toggleLogout } from '../../store/slices/uiSlices';
 import classes from './MobileLogout.module.css';
 
 const MobileLogout = () => {
@@ -15,6 +16,8 @@ const MobileLogout = () => {
         localStorage.removeItem('userInfo');
         localStorage.removeItem('userStatus');
         dispatch(setUserState());
+        dispatch(deleteUserInfo());
+        dispatch(toggleLogout());
         navigate("/login");
     }
 

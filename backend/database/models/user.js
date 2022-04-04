@@ -42,6 +42,12 @@ const userSchema = mongoose.Schema(
         relationship: {
             type: String,
         },
+        coverPic: {
+            type: String,
+        },
+        profilePic: {
+            type: String
+        }
     }, 
     { timeStamps: true }
 );

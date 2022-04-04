@@ -12,6 +12,11 @@
     height: 53vh;
     object-fit: fill;
     width: 100%;
+    cursor: pointer;
+}
+
+.coverPicLabel {
+    width: 100%;
 }
 
 .profilepic {
@@ -22,6 +27,7 @@
     position: relative;
     bottom: 20vh;
     z-index: 1;
+    cursor: pointer;
 }
 
 .picFrame span{
@@ -29,4 +35,11 @@
     font-weight: 600;
     position: relative;
     bottom: 20vh;
+}
+
+.picFrameForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
