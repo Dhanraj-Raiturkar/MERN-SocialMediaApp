@@ -9,8 +9,7 @@ const LoginForm = () => {
   
   const dispatch = useDispatch();
   const loginStatus = useSelector(state => state.loginUser.loginStatus);
-  const loginFailed = useSelector(state => state.loginUser.loginFailed); 
-  console.log(loginStatus);
+  const loginFailed = useSelector(state => state.loginUser.loginFailed);
   if(loginStatus){
     localStorage.setItem('userStatus', JSON.stringify({loginStatus,loginFailed}));
   }

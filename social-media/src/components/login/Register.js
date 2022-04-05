@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Register.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkUsernameAvailability, checkEmailAvailability, registerUser } from '../../store/slices/registerUserSlice';
+import { checkUsernameAvailability, checkEmailAvailability, registerUser, registrationSuccessful } from '../../store/slices/registerUserSlice';
 import { toggleLogin } from '../../store/slices/uiSlices';
 
 const Register = () => {
@@ -12,8 +12,11 @@ const Register = () => {
     }
 
     const [currentDate, setCurrentDate] = useState(new Date);
+    const [successMessage, setSuccessMessage] = useState(false);
 
     const usernameState = useSelector(state => state.registerUser.usernameIsAvailable);
+    const registrationSuccess = useSelector(state => state.registerUser.registrationSuccess);
+    const registrationFailed = useSelector(state => state.registerUser.registrationFailed);
     const emailState = useSelector(state => state.registerUser.emailIsAvailable);
     const dispatch = useDispatch();
     
@@ -64,39 +67,46 @@ const Register = () => {
         birthday:dob, 
         gender 
       }
-      console.log(newUser);
       dispatch(registerUser(newUser));
+      setTimeout(() => {
+        dispatch(registrationFailed());
+        dispatch(registrationSuccessful());
+      }, 4000);
     }
 
     return (
-    <div className={classes.card}>
-            <div className={classes.header}>
-              <h1>Sign Up</h1>
-              <span>Its quick and easy!</span>
-            </div>
-            <form className={classes.registerForm} onSubmit={formSubmitHandler}>
-              <input className={usernameInValid || !usernameState ? classes.error : ''} placeholder='Username' onChange={usernameChangeHandler} onBlur={usernameBlurHandler}/>
-              {usernameInValid && <span className={classes.errorMsg}>please enter a username</span>}
-              {!usernameState && <span className={classes.errorMsg}>this username is taken</span>}
-              <input className={emailInValid || !emailState ? classes.error : ''} placeholder='Email' onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
-              {emailInValid && <span className={classes.errorMsg}>please enter a valid email</span>}
-              {!emailState && <span className={classes.errorMsg}>this email is taken</span>}
-              <input className={passwordTouched && !passwordIsValid ? classes.error : ''} placeholder='Password' type='password' onChange={passwordChangeHandler} onBlur={passwordBlurHandler}/>
-              {passwordTouched && !passwordIsValid && <span className={classes.errorMsg}>include letter, number and special character</span>} 
-              <input className={!dobIsValid ? classes.error : ''} type='date' onChange={dobChangeHandler} onBlur={dobBlurHandler}/>
-              {!dobIsValid && <span className={classes.errorMsg}>age needs to be 10+</span>}
-              <div className={classes.radioButtons}>
-                  <input defaultChecked type='radio' value='Male' name='gender' onClick={genderChangeHandler}/>
-                  <label>Male</label>
-                  <input type='radio' value='Female' name='gender' onClick={genderChangeHandler}/>
-                  <label>Female</label>
-                  <input type='radio' value='Custom' name='gender' onClick={genderChangeHandler}/>
-                  <label>Custom</label>
+    <>
+      {registrationSuccess && <div className={classes.successMessage}><span>Success</span></div>}
+      {registrationFailed && <div className={classes.failureMessage}><span>Failed</span></div>}
+      <div className={classes.card}>
+              <div className={classes.header}>
+                <h1>Sign Up</h1>
+                <span>Its quick and easy!</span>
               </div>
-              <input id={formIsValid ? classes.submit : classes.unsubmit} type='submit' value='Create account' />
-              <span style={{textAlign:'center', cursor:'pointer', fontSize:'0.8em'}} onClick={loginClickHandler}>Already have an account? login.</span>
-            </form>
-        </div>
+              <form className={classes.registerForm} onSubmit={formSubmitHandler}>
+                <input className={usernameInValid || !usernameState ? classes.error : ''} placeholder='Username' onChange={usernameChangeHandler} onBlur={usernameBlurHandler}/>
+                {usernameInValid && <span className={classes.errorMsg}>please enter a username</span>}
+                {!usernameState && <span className={classes.errorMsg}>this username is taken</span>}
+                <input className={emailInValid || !emailState ? classes.error : ''} placeholder='Email' onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
+                {emailInValid && <span className={classes.errorMsg}>please enter a valid email</span>}
+                {!emailState && <span className={classes.errorMsg}>this email is taken</span>}
+                <input className={passwordTouched && !passwordIsValid ? classes.error : ''} placeholder='Password' type='password' onChange={passwordChangeHandler} onBlur={passwordBlurHandler}/>
+                {passwordTouched && !passwordIsValid && <span className={classes.errorMsg}>include letter, number and special character</span>} 
+                <input className={!dobIsValid ? classes.error : ''} type='date' onChange={dobChangeHandler} onBlur={dobBlurHandler}/>
+                {!dobIsValid && <span className={classes.errorMsg}>age needs to be 10+</span>}
+                <div className={classes.radioButtons}>
+                    <input defaultChecked type='radio' value='Male' name='gender' onClick={genderChangeHandler}/>
+                    <label>Male</label>
+                    <input type='radio' value='Female' name='gender' onClick={genderChangeHandler}/>
+                    <label>Female</label>
+                    <input type='radio' value='Custom' name='gender' onClick={genderChangeHandler}/>
+                    <label>Custom</label>
+                </div>
+                <input id={formIsValid ? classes.submit : classes.unsubmit} type='submit' value='Create account' />
+                <span style={{textAlign:'center', cursor:'pointer', fontSize:'0.8em'}} onClick={loginClickHandler}>Already have an account? login.</span>
+              </form>
+          </div>
+        </>
   )
 }
 
