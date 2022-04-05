@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { togglerUserInfoHandler } from './uiSlices';
 
 console.log('loginSlice');
 
@@ -36,6 +37,9 @@ const loginUserSlice = createSlice(
             },
             deleteUserInfo: (state) => {
                 state.userInfo = null;
+            },
+            updateUserInfoState: (state, action) => {
+                state.userInfo = action.payload;
             }
         }
     }
@@ -49,7 +53,7 @@ export const loginUser = (user) => {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: {
-                    'Content-type':'application/json',
+                    'Content-type':'application/json'
                 }
             });
             if(response.status === 200){
@@ -85,5 +89,28 @@ export const setUserInfoState = (accessToken) => {
     }
 }
 
-export const { setUserState, setLoginFailed, deleteUserInfo } = loginUserSlice.actions;
+export const updateUserInfo = (userInfo) => {
+    return async(dispatch) => {
+        console.log(userInfo);
+        try {
+            const response = await fetch('http://localhost:5000/api/users/update', {
+                method:'PUT',
+                body: JSON.stringify(userInfo),
+                headers: {
+                    'Content-Type':'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+            if(response.ok){
+                const data = await response.json();
+                dispatch(updateUserInfoState(data));
+                dispatch(togglerUserInfoHandler());
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
+export const { setUserState, setLoginFailed, deleteUserInfo, updateUserInfoState } = loginUserSlice.actions;
 export default loginUserSlice.reducer;

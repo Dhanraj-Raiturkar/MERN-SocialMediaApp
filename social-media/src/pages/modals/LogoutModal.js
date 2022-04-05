@@ -29,12 +29,6 @@ const LogoutModal = (props) => {
     navigate("/login");
   }
 
-  // useEffect(() => {
-  //     if (!loginStatus) {
-        
-  //     }
-  // }, [loginStatus]);
-
   return (
     <Modal>
         <div className={classes.modalContent}>

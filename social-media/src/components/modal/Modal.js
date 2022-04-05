@@ -3,6 +3,10 @@ import classes from './Modal.module.css';
 
 const Modal = (props) => {
 
+  const height = {
+    height: `${props.height}vh`,
+  }
+
   const [hideModal, setHideModal] = useState(false);
 
   const hideModalHandler = () => {
@@ -12,8 +16,8 @@ const Modal = (props) => {
   }
 
   return (
-    <div className={classes.modal} onClick={hideModalHandler} style={{display:hideModal ? 'none' : 'flex'}}>
-        <div className={classes.modalContent}>
+    <div className={classes.modal} style={{display:hideModal ? 'none' : 'flex'}}>
+        <div className={classes.modalContent} style={height}>
             <div></div>
         </div>
         {props.children}

@@ -7,6 +7,7 @@ const uiSlice = createSlice(
             toggleLogin: true,
             toggleLogout: false,
             toggleCoverPic: false,
+            toggleUserInfoModal: false,
         },
         reducers: {
             toggleLogin: (state) => {
@@ -19,10 +20,13 @@ const uiSlice = createSlice(
             toggleCoverPicHandler: (state) => {
                 console.log('clicked');
                 state.toggleCoverPic = !state.toggleCoverPic;
-            }
+            },
+            togglerUserInfoHandler: (state) => {
+                state.toggleUserInfoModal = !state.toggleUserInfoModal;
+            },
         }
     }
 );
 
-export const { toggleLogin, toggleLogout, toggleCoverPicHandler } = uiSlice.actions;
+export const { toggleLogin, toggleLogout, toggleCoverPicHandler, togglerUserInfoHandler } = uiSlice.actions;
 export default uiSlice.reducer;

@@ -62,10 +62,11 @@ router.get('/email/:email', async(req,res) => {
 
 
 //update user
-router.put('/:id', async(req,res) => {
-    const { username, email, password } = req.body;
+router.put('/update', authUser, async(req,res) => {
     try{
-        const user = await User.findOne({_id:req.params.id});
+        const userId = verify(req.token, process.env.ACCESSTOKEN_SECRET);
+        const user = await User.findOne({_id:userId.userId});
+        const {username, email, password, desc, city, from, relationship} = req.body;
         if(user){
             if(username){
                 user.username = username;
@@ -78,31 +79,80 @@ router.put('/:id', async(req,res) => {
                 const hashedPassword = await hash(password, salt);
                 user.password = hashedPassword;
             }
+            if(desc){
+                user.desc = desc;
+            }
+            if(city){
+                user.city = city;
+            }
+            if(from) {
+                user.from = from;
+            }
+            if(relationship){
+                user.relationship = relationship;
+            }
             const response = await user.save();
             if(response){
-                res.send('Updated successfully');
+                res.send(user);
             }else{
                 res.send('Update failed');
             }
         }
     }catch(error){
-        res.send(error.message);
-    }
-});
+        res.status(403).send(error.message);
+    };
+//     
+//     try{
+//         const user = await User.findOne({_id:req.params.id});
+//         if(user){
+//             if(username){
+//                 user.username = username;
+//             }
+//             if(email){
+//                 user.email = email;
+//             }
+//             if(password){
+//                 const salt = await genSalt(10);
+//                 const hashedPassword = await hash(password, salt);
+//                 user.password = hashedPassword;
+//             }
+//             if(desc){
+//                 user.desc = desc;
+//             }
+//             if(city){
+//                 user.city = city;
+//             }
+//             if(from) {
+//                 user.from = from;
+//             }
+//             if(relationship){
+//                 user.relationship = relationship;
+//             }
+//             const response = await user.save();
+//             if(response){
+//                 res.send('Updated successfully');
+//             }else{
+//                 res.send('Update failed');
+//             }
+//         }
+//     }catch(error){
+//         res.send(error.message);
+//     }
+// });
 
-//delete user
-router.delete('/:id', async(req,res) => {
-    try{
-        const user = await User.findOne({_id:req.params.id});
-        if(user){
-            const response = user.remove();
-            res.send(response);
-        }else{
-            res.send('user does not exist');
-        }
-    }catch(error){
-        res.send(error);
-    }
+// //delete user
+// router.delete('/:id', async(req,res) => {
+//     try{
+//         const user = await User.findOne({_id:req.params.id});
+//         if(user){
+//             const response = user.remove();
+//             res.send(response);
+//         }else{
+//             res.send('user does not exist');
+//         }
+//     }catch(error){
+//         res.send(error);
+//     }
 });
 
 
