@@ -27,7 +27,10 @@ const AddPost = () => {
     <FeedCard>
       <form className={classes.addPostForm} method="post" encType="multipart/form-data">
         <div className={classes.caption}  >
-          <img alt="Profile pic" src="./Assets/images/profilepic1.png" />
+          {!userInfo.profilePic ? 
+            <img className={classes.profilepic} src='/Assets/images/profilepic1.png'/>
+          :
+            <img className={classes.profilepic} src={`http://localhost:5000/api/images/${userInfo.profilePic}`}/>}
           <input type="text" placeholder={`Whats in your mind ${userInfo.username}?`} onChange={PostChangeHandler}/>
         </div>
         <hr className={classes.addPostDivider}/>

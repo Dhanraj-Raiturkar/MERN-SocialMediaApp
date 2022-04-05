@@ -43,3 +43,12 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.coverPicLabel{
+    display: flex;
+    justify-content: center;
+}
+
+.coverPicForm {
+    width: 100%;
+}

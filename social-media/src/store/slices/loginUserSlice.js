@@ -3,26 +3,24 @@ import { togglerUserInfoHandler } from './uiSlices';
 
 console.log('loginSlice');
 
-try{
-    var loginStatus = JSON.parse(localStorage.getItem('userState')).loginStatus;
-    console.log("--> ",loginStatus);
-    var loginFailed = JSON.parse(localStorage.getItem('userState')).loginFailed;
-    var userInfo = JSON.parse(localStorage.getItem('userInfo'));
-}catch(error){
-    var loginStatus = false;
-    var loginFailed = false;
-    var userInfo = null;
-}
+// try{
+//     var loginStatus = JSON.parse(localStorage.getItem('userState')).loginStatus;
+//     var loginFailed = JSON.parse(localStorage.getItem('userState')).loginFailed;
+//     var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+// }catch(error){
+//     var loginStatus = false;
+//     var loginFailed = false;
+//     var userInfo = null;
+// }
 
-console.log(loginStatus);
 
 const loginUserSlice = createSlice(
     {
         name:'loginUserSlice',
         initialState: {
-            loginStatus: loginStatus,
-            loginFailed: loginFailed,
-            userInfo: userInfo,
+            loginStatus: false,
+            loginFailed: false,
+            userInfo: null,
         },
         reducers: {
             setUserState: (state, action) => {
@@ -111,6 +109,28 @@ export const updateUserInfo = (userInfo) => {
         }
     }
 }
+
+export const updateUserCoverpic = () => {
+    return async(dispatch) => {
+        try{
+            const accesstoken = localStorage.getItem('accesstoken');
+            const response = await fetch('http://localhost:5000/api/users/', {
+                method:'get',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+            if(response.ok){
+                const data = await response.json();
+                console.log(data);
+                dispatch(updateUserInfoState(data));
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
 
 export const { setUserState, setLoginFailed, deleteUserInfo, updateUserInfoState } = loginUserSlice.actions;
 export default loginUserSlice.reducer;

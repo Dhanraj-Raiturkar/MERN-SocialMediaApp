@@ -106,8 +106,8 @@
 }
 
 .profileBadge img {
-    width: 100%;
-    height: 100%;
+    width: 3.2rem;
+    height: 3.2rem;
     border-radius: 50%;
     object-fit: fill;
     cursor: pointer;

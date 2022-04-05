@@ -43,6 +43,7 @@ const UserInfo = () => {
           <input onChange={(e) => setFrom(e.target.value)} type='text' placeholder='Native' className={classes.userInfoInput}/>
           <label htmlFor='relationship'>Relationship Status</label>
           <select id='relationship' className={classes.userInfoInput} onChange={(e) => setRelationship(e.target.options[e.target.selectedIndex].text)}>
+            <option/>
             <option value='Single'>Single</option>
             <option value='In a relationship' >In a relationship</option>
             <option value='Married'>Married</option>

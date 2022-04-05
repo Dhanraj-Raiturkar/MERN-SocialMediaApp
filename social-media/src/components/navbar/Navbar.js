@@ -5,10 +5,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleLogout } from '../../store/slices/uiSlices';
 
 const Navbar = () => {
+
+  const userInfo = useSelector(state => state.loginUser.userInfo);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,7 +49,10 @@ const Navbar = () => {
             <NotificationsIcon fontSize='large' className={classes.navbarIcons} /><span className={classes.notificationAlert}><span>2</span></span>
           </div>
           <div className={classes.profileBadge}>
-            <img src="./Assets/images/profilepic1.png" alt="Profile pic" onClick={toggleLogoutHandler}/>
+            {!userInfo.profilePic ? 
+              <img className={classes.profilepic} src='/Assets/images/profilepic1.png' alt="Profile pic" onClick={toggleLogoutHandler}/>
+            :
+              <img className={classes.profilepic} src={`http://localhost:5000/api/images/${userInfo.profilePic}`} alt="Profile pic" onClick={toggleLogoutHandler}/>}
           </div>
       </div>
     </div>

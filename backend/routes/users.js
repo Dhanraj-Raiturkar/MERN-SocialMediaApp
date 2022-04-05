@@ -17,6 +17,16 @@ router.get('/all', authUser, async(req,res) => {
     };
 });
 
+router.get('/', authUser, async(req,res) => {
+    try{
+        const userId = verify(req.token, process.env.ACCESSTOKEN_SECRET);
+        const users = await User.findOne({_id:userId.userId});
+        res.send(users);  
+    }catch(error){
+        res.status(403).send(error.message);
+    };
+});
+
 //get user by access token
 router.post('/getUserData', async(req,res) => {
     try{
@@ -159,8 +169,17 @@ router.put('/update', authUser, async(req,res) => {
 //update coverpic
 router.post('/coverpic/:id', upload.single('coverPicUpload'), async(req,res) => {
     const user = await User.findOne({_id:req.params.id});
-    user.coverPic = req.file.originalname;
+    user.coverPic = req.filename;
     const response = await user.save();
+    res.end();
+});
+
+//update profilepic
+router.post('/profilepic/:id', upload.single('profilePicUpload'), async(req,res) => {
+    const user = await User.findOne({_id:req.params.id});
+    user.profilePic = req.filename;
+    const response = await user.save();
+    res.end();
 });
 
 module.exports = router;
