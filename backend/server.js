@@ -4,8 +4,8 @@ const dotenv = require('dotenv');
 const connectDb = require('./database/config');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
-const postRouter = require('./routes/post');
 const imagesRouter = require('./routes/images');
+const postRouter = require('./routes/post');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 

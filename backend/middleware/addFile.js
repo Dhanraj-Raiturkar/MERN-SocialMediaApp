@@ -1,7 +1,4 @@
-const express = require('express');
 const multer = require('multer');
-
-console.log('ran add file');
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {

@@ -8,14 +8,17 @@
     flex-direction: column;
 }
 
-.addPostForm img{
-    /* height: 100%;
-    width: 12.7%; */
+.profilepic {
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
-    /* border: 1px solid red; */
 }
+
+/* .addPostForm img{
+    height: 100%;
+    width: 12.7%;
+    border: 1px solid red;
+} */
 
 .addPostForm input{
     border: none;
@@ -60,6 +63,11 @@
     font-size: 1em;
     color: white;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.shareButton:hover{
+    background-color: rgb(33, 195, 33);
 }
 
 .caption {
@@ -78,4 +86,12 @@
 
 .uploadMedia {
     display: none;
+}
+
+.imagePreview {
+    width: 50rem;
+    height: 38.5rem;
+    /* border: 1px solid red; */
+    object-fit: contain;
+    margin-bottom: 2vh;
 }

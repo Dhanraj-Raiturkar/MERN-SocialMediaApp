@@ -17,6 +17,15 @@ router.get('/all', authUser, async(req,res) => {
     };
 });
 
+router.get('/:id', async(req,res) => {
+    try{
+        const user = await User.findOne({_id:req.params.id});
+        res.send(user);
+    }catch(error){
+        console.log(error);
+    }
+})
+
 router.get('/', authUser, async(req,res) => {
     try{
         const userId = verify(req.token, process.env.ACCESSTOKEN_SECRET);

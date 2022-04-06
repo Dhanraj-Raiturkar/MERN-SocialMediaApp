@@ -20,9 +20,6 @@ const LogoutModal = (props) => {
 
   const logoutHandler = () => {
     console.log('clicked');
-    localStorage.removeItem('accesstoken');
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('userStatus');
     dispatch(setUserState());
     dispatch(deleteUserInfo());
     dispatch(toggleLogout());

@@ -21,6 +21,7 @@ const loginUserSlice = createSlice(
             loginStatus: false,
             loginFailed: false,
             userInfo: null,
+            postUser: null,
         },
         reducers: {
             setUserState: (state, action) => {
@@ -38,6 +39,9 @@ const loginUserSlice = createSlice(
             },
             updateUserInfoState: (state, action) => {
                 state.userInfo = action.payload;
+            },
+            setPostUser: (state,action) => {
+                state.postUser = action.payload;
             }
         }
     }
@@ -131,6 +135,22 @@ export const updateUserCoverpic = () => {
     }
 }
 
+export const fetchUser = (userId) => {
+    return async(dispatch) => {
+        try{
+            const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method:'GET',
+            });
+            if(response.ok){
+                const data = await response.json();
+                dispatch(setPostUser(data));
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+} 
 
-export const { setUserState, setLoginFailed, deleteUserInfo, updateUserInfoState } = loginUserSlice.actions;
+
+export const { setUserState, setLoginFailed, deleteUserInfo, updateUserInfoState, setPostUser } = loginUserSlice.actions;
 export default loginUserSlice.reducer;

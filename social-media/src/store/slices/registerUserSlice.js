@@ -22,11 +22,13 @@ const registerUserSlice = createSlice(
             emailAvailable: (state) => {
                 state.emailIsAvailable = true;
             },
-            registrationSuccessful: (state) => {
-                state.registrationSuccess = !state.registrationSuccess;
+            registrationSuccessful: (state, action) => {
+                console.log(action.payload);
+                state.registrationSuccess = action.payload;
             },
-            registrationFailed: (state) => {
-                state.registrationFailed = !state.registrationFailed;
+            registrationFailedHandler: (state, action) => {
+                console.log(action.payload);
+                state.registrationFailed = action.payload;
             }
         }
     },
@@ -74,13 +76,16 @@ export const registerUser = (user) => {
                     "Content-type":"application/json",
                 }
             });
-            dispatch(registrationSuccessful());
+            dispatch(registrationSuccessful(true));
         }catch(error){
-            dispatch(registrationFailed());
-            console.log=(error.message);
+            dispatch(registrationFailedHandler(true));
+            setTimeout(() => {
+                dispatch(registrationFailedHandler(false));
+            },4000);
+            console.log(error.message);
         }
     }
 }
 
-export const { usernameTaken, usernameAvailable, emailTaken, emailAvailable, registrationSuccessful, registrationFailed } = registerUserSlice.actions;
+export const { usernameTaken, usernameAvailable, emailTaken, emailAvailable, registrationSuccessful, registrationFailedHandler } = registerUserSlice.actions;
 export default registerUserSlice.reducer;

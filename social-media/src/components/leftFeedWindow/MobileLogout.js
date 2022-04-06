@@ -12,19 +12,11 @@ const MobileLogout = () => {
     const navigate = useNavigate();
 
     const logoutHandler = () => {
-        localStorage.removeItem('accesstoken');
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('userStatus');
         dispatch(setUserState());
         dispatch(deleteUserInfo());
         dispatch(toggleLogout());
         navigate("/login");
     }
-
-    // useEffect(() => {
-    //   if (!loginStatus) {
-    //   }
-    // }, [loginStatus]);
 
     return (
         <button className={classes.mobileLogout} onClick={logoutHandler}>Logout</button>

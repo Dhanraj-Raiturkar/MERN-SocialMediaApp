@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Register.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkUsernameAvailability, checkEmailAvailability, registerUser, registrationSuccessful } from '../../store/slices/registerUserSlice';
+import { checkUsernameAvailability, checkEmailAvailability, registerUser, registrationSuccessful, registrationFailedHandler } from '../../store/slices/registerUserSlice';
 import { toggleLogin } from '../../store/slices/uiSlices';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -13,6 +14,7 @@ const Register = () => {
 
     const [currentDate, setCurrentDate] = useState(new Date);
     const [successMessage, setSuccessMessage] = useState(false);
+    const navigate = useNavigate();
 
     const usernameState = useSelector(state => state.registerUser.usernameIsAvailable);
     const registrationSuccess = useSelector(state => state.registerUser.registrationSuccess);
@@ -69,8 +71,9 @@ const Register = () => {
       }
       dispatch(registerUser(newUser));
       setTimeout(() => {
-        dispatch(registrationFailed());
-        dispatch(registrationSuccessful());
+        dispatch(registrationFailedHandler(false));
+        dispatch(registrationSuccessful(false));
+        dispatch(toggleLogin());
       }, 4000);
     }
 

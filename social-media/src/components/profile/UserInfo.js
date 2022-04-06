@@ -38,19 +38,19 @@ const UserInfo = () => {
     <>
       {toggleUserInfoModal && <Modal height='45'>
         <form className={classes.userInfoForm} onSubmit={formSubmitHandler}>
-          <h1 style={{color:'rgb(71, 71, 71)'}}>About</h1>
+          <h1 style={{color:'rgb(71, 71, 71)', marginBottom:'3vh'}}>About</h1>
           <input onChange={(e) => setCity(e.target.value)} type='text' placeholder='Current City' className={classes.userInfoInput}/>
           <input onChange={(e) => setFrom(e.target.value)} type='text' placeholder='Native' className={classes.userInfoInput}/>
-          <label htmlFor='relationship'>Relationship Status</label>
+          {/* <label htmlFor='relationship'>Relationship Status</label> */}
           <select id='relationship' className={classes.userInfoInput} onChange={(e) => setRelationship(e.target.options[e.target.selectedIndex].text)}>
-            <option/>
+            <option value="" disabled selected>Relationship Status</option>
             <option value='Single'>Single</option>
             <option value='In a relationship' >In a relationship</option>
             <option value='Married'>Married</option>
           </select>
           <div className={classes.buttonContainer}>
             <input className={classes.submit} type='submit' value='Save'/>
-            <input onClick={() => dispatch(togglerUserInfoHandler())} className={classes.submit} type='button' value='Cancel' style={{backgroundColor:'rgb(195, 195, 195)', color:'rgb(100, 100, 100)'}}/>
+            <input id={classes.cancelButton} onClick={() => dispatch(togglerUserInfoHandler())} className={classes.submit} type='button' value='Cancel' style={{backgroundColor:'rgb(95, 95, 95)'}} />
           </div>
         </form>
       </Modal>}
