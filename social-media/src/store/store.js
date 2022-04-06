@@ -3,6 +3,7 @@ import registerReducer from './slices/registerUserSlice';
 import uiReducer from './slices/uiSlices';
 import loginReducer from './slices/loginUserSlice';
 import postReducer from './slices/postSlice';
+import usersReducer from './slices/userSlice';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
@@ -13,13 +14,13 @@ const persistConfig = {
     storage,
 };
 
-
 const reducers = combineReducers(
     {
         registerUser: registerReducer,
         toggleUi: uiReducer,
         loginUser: loginReducer,
         postReducer: postReducer,
+        usersReducer: usersReducer,
     }
 );
     

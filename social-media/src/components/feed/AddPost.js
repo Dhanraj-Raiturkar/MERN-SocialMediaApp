@@ -32,7 +32,7 @@ const AddPost = () => {
       dispatch(fetchPosts());
       setPostPicture('');
       setCaption('');
-    }, 2500);
+    }, 400);
   }
 
   const inputChangeHandler = (e) => {setCaption(e.target.value)};

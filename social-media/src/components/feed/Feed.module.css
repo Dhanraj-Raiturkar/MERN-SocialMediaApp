@@ -11,3 +11,43 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+.searchModal{
+    position: relative;
+    z-index: 7;
+}
+
+.searchedUserImage {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    object-fit: fill;
+    cursor: pointer;
+    /* border: 1px solid red; */
+}
+
+.searchedUserContainer {
+    display: flex;
+    align-items: center;
+    width: 30rem;
+    /* border: 1px solid blue; */
+    justify-content: space-between;
+}
+
+.followButton {
+    height: 2rem;
+    width: 5rem;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(12, 125, 231);
+    border-radius: 4px;
+    color: white;
+    /* font-weight: 600; */
+    font-size: 1em;
+}
+
+.followButton:hover{
+    background-color: rgb(45, 153, 254);
+}

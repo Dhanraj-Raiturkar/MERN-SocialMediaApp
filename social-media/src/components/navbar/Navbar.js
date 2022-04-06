@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Navbar.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
@@ -6,16 +6,31 @@ import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleLogout } from '../../store/slices/uiSlices';
+import { toggleLogout, toggleSearchModalHandler } from '../../store/slices/uiSlices';
+import { fetchSearchedUsers } from '../../store/slices/userSlice';
+import { fetchPosts } from '../../store/slices/postSlice';
 
 const Navbar = () => {
 
   const userInfo = useSelector(state => state.loginUser.userInfo);
 
+  const [search, setSearch] = useState('');
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearchedUsers(search));
+    setTimeout(() => {
+      dispatch(toggleSearchModalHandler());
+    }, 3000);
+  };
+
+  const inputChangeHandler = (e) => {setSearch(e.target.value)};
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const profilePageClickHandler = () => {
+    dispatch(fetchPosts());
     navigate('/profile');
   };
 
@@ -34,8 +49,8 @@ const Navbar = () => {
       </div>
       <div className={classes.navbarCenter}>
         <SearchIcon className={classes.searchLogo}/>
-        <form className={classes.search}>
-          <input placeholder='search'></input>
+        <form className={classes.search} onSubmit={submitHandler}>
+          <input placeholder='search' onChange={inputChangeHandler}></input>
         </form>
         <ul className={classes.links}>
             <li onClick={homePageClickHandler}>Homepage</li>
