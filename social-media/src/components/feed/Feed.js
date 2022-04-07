@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Feed.module.css';
 import AddPost from './AddPost';
 import Post from './Post';
@@ -7,14 +7,34 @@ import { fetchPosts } from '../../store/slices/postSlice';
 import Modal from '../modal/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toggleSearchModalHandler } from '../../store/slices/uiSlices';
+import { followUser, refreshUsers } from '../../store/slices/userSlice';
 
 const Feed = () => {
 
   const posts = useSelector(state => state.postReducer.posts);
   const toggleSearchModal = useSelector(state => state.toggleUi.toggleSearchModal);
+  const userInfo = useSelector(state => state.loginUser.userInfo);
   const searchedUsers = useSelector(state => state.usersReducer.searchedUsers);
   const dispatch = useDispatch();
-  console.log(posts);
+
+  const [following, setFollowing] = useState(false);
+
+
+  const followClickHandler = () => {
+    dispatch(followUser(userInfo._id, searchedUsers._id));
+    setTimeout(() => {
+      dispatch(refreshUsers(userInfo.username));
+    },3000);
+  }
+
+  useEffect(() => {
+    const following = userInfo.following.filter(user => user === searchedUsers._id);
+    if(following[0]){
+      setFollowing(true);
+    }else{
+      setFollowing(false);
+    }
+  }, [userInfo]); 
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -31,7 +51,12 @@ const Feed = () => {
                 <img src={`http://localhost:5000/api/images/${searchedUsers.profilePic}`} className={classes.searchedUserImage}/>
                 <span style={{marginLeft:'1vw', fontSize:'1.2em'}}>{searchedUsers.username}</span>
               </div>
-              <button className={classes.followButton}>Follow</button>
+              {
+                following ? 
+                  <button className={classes.followButton} onClick={followClickHandler}>Follow</button>
+                :
+                  <button className={classes.followButton} onClick={followClickHandler}>Unfollow</button>
+              }
             </div> : 
             <span>No users found</span>
             }

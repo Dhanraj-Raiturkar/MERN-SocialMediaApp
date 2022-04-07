@@ -174,6 +174,27 @@ router.put('/update', authUser, async(req,res) => {
 //     }
 });
 
+router.put('/followUser/:uid/:fid', async(req,res) => {
+    try{
+        const user = await User.findOne({_id:req.params.uid});
+        const followUser = await User.findOne({_id:req.params.fid});
+        const exists = user.following.filter((user) => String(user) === String(followUser._id));
+        if(exists[0]){
+            const exists = user.following.filter((user) => String(user) !== String(followUser._id));
+            user.following = exists;
+            await user.save();
+            res.send(user);
+        }else{
+            user.following.push(followUser._id);
+            followUser.followers.push(user._id);
+            await user.save();
+            await followUser.save();
+            res.send(user);
+        }
+    }catch(error){
+        console.log(error);
+    }
+});
 
 //update coverpic
 router.post('/coverpic/:id', upload.single('coverPicUpload'), async(req,res) => {
