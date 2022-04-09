@@ -38,8 +38,12 @@ const loginUserSlice = createSlice(
                 state.userInfo = null;
             },
             updateUserInfoState: (state, action) => {
-                console.log('User info updated ', action.payload);
-                state.userInfo = action.payload;
+                console.log('this state is going to be updated: ', action.payload);
+                try{
+                    state.userInfo = {...state.userInfo, following:action.payload.following};
+                }catch(err){
+                    console.log(err);
+                }
             },
             setPostUser: (state,action) => {
                 state.postUser = action.payload;

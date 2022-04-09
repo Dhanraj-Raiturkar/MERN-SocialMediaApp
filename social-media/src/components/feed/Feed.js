@@ -8,8 +8,13 @@ import Modal from '../modal/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toggleSearchModalHandler } from '../../store/slices/uiSlices';
 import { followUser, refreshUsers } from '../../store/slices/userSlice';
+import { updateUserInfo } from '../../store/slices/loginUserSlice';
 
 const Feed = () => {
+
+  const [rerun, setRerun] = useState(false);
+
+  console.log('reran');
 
   const posts = useSelector(state => state.postReducer.posts);
   const toggleSearchModal = useSelector(state => state.toggleUi.toggleSearchModal);
@@ -21,19 +26,35 @@ const Feed = () => {
 
   console.log(following);
 
+  const setFollowingStatus = () => {
+    console.log('you -> ',userInfo);
+    try{
+      const isFollowing = userInfo.following.includes(searchedUsers._id);
+      console.log('you ', isFollowing, ' searchedUser');
+      if(isFollowing){
+        setFollowing(true);
+      }else{
+        setFollowing(false);
+      }
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   const followClickHandler = () => {
-    dispatch(followUser(userInfo._id, searchedUsers._id, userInfo));
+    dispatch(followUser(userInfo._id, searchedUsers._id));
+    setTimeout(() => {
+      dispatch(toggleSearchModalHandler());
+      dispatch(toggleSearchModalHandler());
+      setFollowingStatus();
+      setRerun(state => !state);
+    }, 5000);
   }
 
   useEffect(() => {
-    const isFollowing = userInfo.following.includes(searchedUsers._id);
-    console.log('you ', isFollowing, ' searchedUser');
-    if(isFollowing){
-      setFollowing(true);
-    }else{
-      setFollowing(false);
-    }
-  }, [userInfo]); 
+    console.log('useEffect')
+    setFollowingStatus();
+  }, [toggleSearchModal]); 
 
   useEffect(() => {
     dispatch(fetchPosts());

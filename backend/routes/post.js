@@ -36,12 +36,11 @@ router.get('/follower/:id', async(req,res) => {
         user[0].following.map(user => {
             users.push(user);
         });
+        console.log(users);
         users.map(async(user) => {
             const post = await Post.findOne({userId:user._id});
-            if(post){
-                console.log(post);
-            }
         });
+        console.log(posts);
         res.send(posts);
     }catch(error){
         console.log(error);
