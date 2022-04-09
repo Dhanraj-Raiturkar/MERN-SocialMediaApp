@@ -181,7 +181,10 @@ router.put('/followUser/:uid/:fid', async(req,res) => {
         const exists = user.following.filter((user) => String(user) === String(followUser._id));
         if(exists[0]){
             const exists = user.following.filter((user) => String(user) !== String(followUser._id));
+            const removeFollower = followUser.followers.filter((users) => String(users) !== String(user._id));
+            followUser.followers = removeFollower;
             user.following = exists;
+            await followUser.save();
             await user.save();
             res.send(user);
         }else{

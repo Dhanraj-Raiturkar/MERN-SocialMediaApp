@@ -38,6 +38,7 @@ const loginUserSlice = createSlice(
                 state.userInfo = null;
             },
             updateUserInfoState: (state, action) => {
+                console.log('User info updated ', action.payload);
                 state.userInfo = action.payload;
             },
             setPostUser: (state,action) => {

@@ -7,7 +7,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLogout, toggleSearchModalHandler } from '../../store/slices/uiSlices';
-import { fetchSearchedUsers } from '../../store/slices/userSlice';
+import { fetchSearchedUsers, refreshUsers } from '../../store/slices/userSlice';
 import { fetchPosts } from '../../store/slices/postSlice';
 
 const Navbar = () => {
@@ -19,6 +19,7 @@ const Navbar = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(fetchSearchedUsers(search));
+    dispatch(refreshUsers(userInfo.username));
     setTimeout(() => {
       dispatch(toggleSearchModalHandler());
     }, 3000);

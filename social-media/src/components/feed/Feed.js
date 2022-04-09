@@ -17,19 +17,18 @@ const Feed = () => {
   const searchedUsers = useSelector(state => state.usersReducer.searchedUsers);
   const dispatch = useDispatch();
 
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState(null);
 
+  console.log(following);
 
   const followClickHandler = () => {
-    dispatch(followUser(userInfo._id, searchedUsers._id));
-    setTimeout(() => {
-      dispatch(refreshUsers(userInfo.username));
-    },3000);
+    dispatch(followUser(userInfo._id, searchedUsers._id, userInfo));
   }
 
   useEffect(() => {
-    const following = userInfo.following.filter(user => user === searchedUsers._id);
-    if(following[0]){
+    const isFollowing = userInfo.following.includes(searchedUsers._id);
+    console.log('you ', isFollowing, ' searchedUser');
+    if(isFollowing){
       setFollowing(true);
     }else{
       setFollowing(false);
@@ -52,7 +51,7 @@ const Feed = () => {
                 <span style={{marginLeft:'1vw', fontSize:'1.2em'}}>{searchedUsers.username}</span>
               </div>
               {
-                following ? 
+                !following ? 
                   <button className={classes.followButton} onClick={followClickHandler}>Follow</button>
                 :
                   <button className={classes.followButton} onClick={followClickHandler}>Unfollow</button>

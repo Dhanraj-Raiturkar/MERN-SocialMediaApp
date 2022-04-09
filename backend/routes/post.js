@@ -19,6 +19,35 @@ router.get('/all', async(req,res) => {
     }
 })
 
+router.get('/timeline/:id', async(req,res) => {
+    try{
+        const posts = await Post.find({userId:req.params.id});
+        res.send(posts);
+    }catch(error){
+        console.log(error);
+    }
+})
+
+router.get('/follower/:id', async(req,res) => {
+    try{
+        let users = []
+        let posts = []
+        const user = await User.find({_id:req.params.id})
+        user[0].following.map(user => {
+            users.push(user);
+        });
+        users.map(async(user) => {
+            const post = await Post.findOne({userId:user._id});
+            if(post){
+                console.log(post);
+            }
+        });
+        res.send(posts);
+    }catch(error){
+        console.log(error);
+    }
+})
+
 router.post('/add/:id', upload.single('postPicture'), async(req,res) => {
     console.log(req.body.caption);
     try{

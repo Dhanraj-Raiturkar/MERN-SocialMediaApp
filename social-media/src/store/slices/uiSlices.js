@@ -32,5 +32,10 @@ const uiSlice = createSlice(
     }
 );
 
-export const { toggleLogin, toggleLogout, toggleCoverPicHandler, togglerUserInfoHandler, toggleSearchModalHandler } = uiSlice.actions;
+export const { 
+    toggleLogin, 
+    toggleLogout, 
+    toggleCoverPicHandler, 
+    togglerUserInfoHandler, 
+    toggleSearchModalHandler } = uiSlice.actions;
 export default uiSlice.reducer;

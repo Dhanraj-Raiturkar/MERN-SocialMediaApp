@@ -44,12 +44,13 @@ export const refreshUsers = (username) => {
     }
 }
 
-export const followUser = (uid,fid) => {
+export const followUser = (uid,fid,data) => {
     return async(dispatch) => {
         try{
             const response = await fetch(`http://localhost:5000/api/users/followUser/${uid}/${fid}`, {method:'PUT'});
             if(response.ok){
                 console.log('ok');
+                dispatch(updateUserInfoState(data));
             }
         }catch(error){
             console.log(error);
