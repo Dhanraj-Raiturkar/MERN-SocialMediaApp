@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserState, deleteUserInfo } from '../../store/slices/loginUserSlice';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/modal/Modal';
+import { deletePosts } from '../../store/slices/postSlice';
 
 const LogoutModal = (props) => {
 
@@ -22,6 +23,7 @@ const LogoutModal = (props) => {
     console.log('clicked');
     dispatch(setUserState());
     dispatch(deleteUserInfo());
+    dispatch(deletePosts());
     dispatch(toggleLogout());
     navigate("/login");
   }

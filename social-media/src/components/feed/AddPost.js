@@ -7,6 +7,7 @@ import classes from './AddPost.module.css';
 import FeedCard from './FeedCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../../store/slices/postSlice';
+import { refreshUsers } from '../../store/slices/userSlice';
 
 
 const AddPost = () => {
@@ -29,7 +30,8 @@ const AddPost = () => {
 
   const postSubmitHandler = (e) => {
     setTimeout(() => {
-      dispatch(fetchPosts());
+      dispatch(fetchPosts(userInfo._id));
+      dispatch(refreshUsers());
       setPostPicture('');
       setCaption('');
     }, 400);

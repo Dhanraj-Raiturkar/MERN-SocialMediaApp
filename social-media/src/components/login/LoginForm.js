@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './LoginForm.module.css';
 import { toggleLogin } from '../../store/slices/uiSlices';
-import { loginUser, setUserInfoState } from '../../store/slices/loginUserSlice';
+import { loginUser, setLoginFailed, setUserInfoState } from '../../store/slices/loginUserSlice';
 import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
@@ -30,6 +30,11 @@ const LoginForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(loginUser({email,password}));
+    if(loginFailed){
+      setTimeout(() => {
+        loginFailed = !loginFailed;
+      },3000);
+    }
   };
 
   useEffect(() => {
@@ -47,6 +52,7 @@ const LoginForm = () => {
             <input placeholder='Email' type='email' onChange={emailChangeHandler}/>
             <input className={!passwordIsValid && passwordTouched ? classes.error : ''} placeholder='Password' type="password" onChange={passwordChangeHandler}/>
             <input 
+              className={classes.loginBtn}
               id={passwordIsValid && passwordTouched && email.length > 3 
                   ? classes.submit : classes.unsubmit} 
               type='submit' value='Login' />

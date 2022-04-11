@@ -31,7 +31,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const profilePageClickHandler = () => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(userInfo._id));
     navigate('/profile');
   };
 

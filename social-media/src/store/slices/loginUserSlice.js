@@ -38,9 +38,8 @@ const loginUserSlice = createSlice(
                 state.userInfo = null;
             },
             updateUserInfoState: (state, action) => {
-                console.log('this state is going to be updated: ', action.payload);
                 try{
-                    state.userInfo = {...state.userInfo, following:action.payload.following};
+                    state.userInfo = action.payload;
                 }catch(err){
                     console.log(err);
                 }
@@ -111,6 +110,7 @@ export const updateUserInfo = (userInfo) => {
             if(response.ok){
                 const data = await response.json();
                 dispatch(updateUserInfoState(data));
+                dispatch(setPostUser(data));
                 dispatch(togglerUserInfoHandler());
             }
         }catch(error){

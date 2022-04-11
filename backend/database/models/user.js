@@ -44,9 +44,11 @@ const userSchema = mongoose.Schema(
         },
         coverPic: {
             type: String,
+            default: '1649671470600coverPicDefault.png',
         },
         profilePic: {
-            type: String
+            type: String,
+            default: '1649671219739profilepic1.png',
         }
     }, 
     { timeStamps: true }

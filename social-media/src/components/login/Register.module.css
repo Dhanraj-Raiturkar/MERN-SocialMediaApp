@@ -70,6 +70,11 @@
     padding-left: 0px;
 }
 
+#submit:hover{
+    background-color: rgb(23, 210, 23);
+    cursor:'pointer';
+}
+
 #unsubmit {
     background-color: rgb(173, 173, 173);
     color: rgb(112, 112, 112);
@@ -113,6 +118,7 @@
     font-size: 1.2em;
     align-items: center;
 }
+ 
 
 
 

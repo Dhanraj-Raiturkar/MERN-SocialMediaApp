@@ -46,6 +46,7 @@ const Feed = () => {
     setTimeout(() => {
       dispatch(toggleSearchModalHandler());
       dispatch(toggleSearchModalHandler());
+      dispatch(refreshUsers());
       setFollowingStatus();
       setRerun(state => !state);
     }, 5000);
@@ -57,7 +58,7 @@ const Feed = () => {
   }, [toggleSearchModal]); 
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(userInfo._id));
   }, []);
 
   return (

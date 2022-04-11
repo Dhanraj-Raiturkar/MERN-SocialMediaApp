@@ -42,6 +42,10 @@
     cursor: pointer;
 }
 
+#submit:hover{
+    background-color: rgb(40, 72, 230);
+}
+
 #unsubmit{
     background-color: rgb(118, 137, 168);
     color: rgb(219, 219, 219);

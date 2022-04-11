@@ -89,7 +89,7 @@ const Register = () => {
               <form className={classes.registerForm} onSubmit={formSubmitHandler}>
                 <input className={usernameInValid || !usernameState ? classes.error : ''} placeholder='Username' onChange={usernameChangeHandler} onBlur={usernameBlurHandler}/>
                 {usernameInValid && <span className={classes.errorMsg}>please enter a username</span>}
-                {!usernameState && <span className={classes.errorMsg}>this username is taken</span>}
+                {!usernameInValid && !usernameState && <span className={classes.errorMsg}>this username is taken</span>}
                 <input className={emailInValid || !emailState ? classes.error : ''} placeholder='Email' onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
                 {emailInValid && <span className={classes.errorMsg}>please enter a valid email</span>}
                 {!emailState && <span className={classes.errorMsg}>this email is taken</span>}
@@ -105,7 +105,7 @@ const Register = () => {
                     <input type='radio' value='Custom' name='gender' onClick={genderChangeHandler}/>
                     <label>Custom</label>
                 </div>
-                <input id={formIsValid ? classes.submit : classes.unsubmit} type='submit' value='Create account' />
+                <input style={{cursor:'pointer'}} id={formIsValid ? classes.submit : classes.unsubmit} type='submit' value='Create account' />
                 <span style={{textAlign:'center', cursor:'pointer', fontSize:'0.8em'}} onClick={loginClickHandler}>Already have an account? login.</span>
               </form>
           </div>

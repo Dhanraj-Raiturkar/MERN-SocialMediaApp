@@ -10,10 +10,17 @@ router.get('/', (req,res) => {
     res.send('ok');
 })
 
-router.get('/all', async(req,res) => {
+router.get('/all/:id', async(req,res) => {
     try{
+        let postslist = [];
         const posts = await Post.find();
-        res.send(posts);
+        posts.map((post) => {
+            if(String(post.userId) === String(req.params.id)){
+                console.log(post.createdAt)
+                postslist.push(post);
+            }
+        })
+        res.send(postslist);
     }catch(error){
         console.log(error);
     }
@@ -31,7 +38,7 @@ router.get('/timeline/:id', async(req,res) => {
 router.get('/follower/:id', async(req,res) => {
     try{
         let users = []
-        let posts = []
+        var posts = []
         const user = await User.find({_id:req.params.id})
         user[0].following.map(user => {
             users.push(user);
@@ -39,9 +46,10 @@ router.get('/follower/:id', async(req,res) => {
         console.log(users);
         users.map(async(user) => {
             const post = await Post.findOne({userId:user._id});
+            console.log(post);
+            posts.concat(post);
         });
-        console.log(posts);
-        res.send(posts);
+        res.json(posts);
     }catch(error){
         console.log(error);
     }
@@ -53,7 +61,7 @@ router.post('/add/:id', upload.single('postPicture'), async(req,res) => {
         const user = await User.findOne({_id:req.params.id});
         const post = new Post(
             {
-                userId: user._id,
+                userId: user,
                 caption: req.body.caption,
                 image: req.filename
             }

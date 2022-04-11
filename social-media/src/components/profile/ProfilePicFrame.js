@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './ProfilePicFrame.module.css';
 import { updateUserCoverpic } from '../../store/slices/loginUserSlice';
+import { refreshUsers } from '../../store/slices/userSlice';
 
 const ProfilePicFrame = () => {
 

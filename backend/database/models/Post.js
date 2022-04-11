@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema(
         },
         image: {
             type: String,
+        },
+        time : { 
+            type : Date, 
+            default: Date.now()
         }
     },
     { timeStamps: true }

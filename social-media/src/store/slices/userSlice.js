@@ -58,5 +58,19 @@ export const followUser = (uid,fid) => {
     }
 }
 
+export const fetchFollowers = (uid) => {
+    return async(dispatch) => {
+        try{
+            const response = await fetch(`http://localhost:5000/api/users/${uid}`, {method:'GET'});
+            if(response.ok){
+                const data = await response.json();
+                console.log(data);
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
 export const { setSearchedUsers } = userSlice.actions;
 export default userSlice.reducer;
